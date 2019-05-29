@@ -17,19 +17,19 @@ namespace CustomerInquiry.Api.Controllers
 
         public Customer Get(int? customerID = null, string email = null)
         {
-            if (customerID != null && email != null)
+            ValidateGetCustomerRequest(customerID, email);
+            try
             {
                 return customerManager.GetCustomerWithTransaction(customerID, email);
             }
-            else if (customerID != null)
+            catch
             {
-                return customerManager.GetCustomerWithTransactionByID(customerID);
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
-            else if(email != null)
-            {
-                return customerManager.GetCustomerWithTransactionByEmail(email);
-            }
-            return null;
+        }
+
+        private void ValidateGetCustomerRequest(int? customerID, string email)
+        {
         }
     }
 }

@@ -14,28 +14,18 @@ namespace CustomerIquiry.Bll
             context = customerContext;
         }
 
-        public Customer GetCustomerWithTransactionByID(int? customerID)
+        /// <summary>
+        ///     Search DB for customer data and related transaction data
+        /// </summary>
+        /// <param name="customerID">Customer ID</param>
+        /// <param name="email">Customer Email</param>
+        /// <returns>Return Customer and related transaction</returns>
+        public Customer GetCustomerWithTransaction(int? customerID = null, string email = null)
         {
             return context.Customer
                             .Include(c => c.Transactions)
-                            .Where(c => customerID == c.CustomerID)
-                            .SingleOrDefault();
-        }
-
-        public Customer GetCustomerWithTransactionByEmail(string email)
-        {
-            return context.Customer
-                            .Include(c => c.Transactions)
-                            .Where(c => email == c.Email)
-                            .SingleOrDefault();
-        }
-
-        public Customer GetCustomerWithTransaction(int? customerID, string email)
-        {
-            return context.Customer
-                            .Include(c => c.Transactions)
-                            .Where(c => (customerID == c.CustomerID)
-                                        && (email == c.Email))
+                            .Where(c => (customerID == null || customerID == c.CustomerID)
+                                        && (email == null || email == c.Email))
                             .SingleOrDefault();
         }
     }
