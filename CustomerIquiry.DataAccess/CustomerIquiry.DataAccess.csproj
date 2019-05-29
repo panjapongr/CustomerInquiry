@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -57,6 +60,14 @@
     <Compile Include="Migrations\201905291021354_AlterDecimalColumn.Designer.cs">
       <DependentUpon>201905291021354_AlterDecimalColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905291028442_AlterCustomerColumn.cs" />
+    <Compile Include="Migrations\201905291028442_AlterCustomerColumn.Designer.cs">
+      <DependentUpon>201905291028442_AlterCustomerColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905291030374_AlterCustomerColumn1.cs" />
+    <Compile Include="Migrations\201905291030374_AlterCustomerColumn1.Designer.cs">
+      <DependentUpon>201905291030374_AlterCustomerColumn1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Transaction.cs" />
@@ -71,6 +82,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905291021354_AlterDecimalColumn.resx">
       <DependentUpon>201905291021354_AlterDecimalColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291028442_AlterCustomerColumn.resx">
+      <DependentUpon>201905291028442_AlterCustomerColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291030374_AlterCustomerColumn1.resx">
+      <DependentUpon>201905291030374_AlterCustomerColumn1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

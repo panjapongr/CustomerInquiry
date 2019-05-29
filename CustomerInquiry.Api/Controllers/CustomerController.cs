@@ -1,6 +1,7 @@
 ﻿using CustomerIquiry.Bll;
 using CustomerIquiry.DataAccess;
 using CustomerIquiry.DataAccess.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

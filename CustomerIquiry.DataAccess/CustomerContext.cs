@@ -23,6 +23,9 @@ namespace CustomerIquiry.DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Customer>().Property(e => e.Name).HasMaxLength(30);
+            modelBuilder.Entity<Customer>().Property(e => e.Email).HasMaxLength(25);
+            modelBuilder.Entity<Customer>().Property(e => e.MobileNumber).HasMaxLength(10);
             modelBuilder.Entity<Transaction>().Property(e => e.Amount).HasPrecision(12, 2);
         }
     }
