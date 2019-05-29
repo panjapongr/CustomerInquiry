@@ -10,7 +10,7 @@ namespace CustomerIquiry.DataAccess.Models
     public class Customer
     {
         [JsonProperty(PropertyName = "customerID")]
-        public int CustomerID { get; set; }
+        public long CustomerID { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

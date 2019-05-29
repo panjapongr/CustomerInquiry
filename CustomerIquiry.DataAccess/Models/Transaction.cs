@@ -26,6 +26,6 @@ namespace CustomerIquiry.DataAccess.Models
         public string Status { get; set; }
 
         [JsonIgnore]
-        public int CustomerID { get; set; }
+        public long CustomerID { get; set; }
     }
 }

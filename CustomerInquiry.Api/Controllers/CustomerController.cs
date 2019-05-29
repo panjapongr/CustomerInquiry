@@ -21,7 +21,7 @@ namespace CustomerInquiry.Api.Controllers
             ValidateGetCustomerRequest(customerID, email);
             try
             {
-                int? validCustomerID = ToNullableInt(customerID);
+                long? validCustomerID = ToNullableLong(customerID);
                 var customer = customerManager.GetCustomerWithTransaction(validCustomerID, email);
                 if (customer == null)
                 {
@@ -33,7 +33,7 @@ namespace CustomerInquiry.Api.Controllers
             {
                 throw;
             }
-            catch
+            catch (Exception ex)
             {
                 throw HttpBadRequest();
             }
@@ -58,7 +58,7 @@ namespace CustomerInquiry.Api.Controllers
         private static bool IsValidCustomerID(string customerID)
         {
             // Valid if null or can convert to int
-            return customerID == null || int.TryParse(customerID, out int id);
+            return customerID == null || (customerID.Length <= 10 && long.TryParse(customerID, out long id));
         }
 
         private static bool IsValidEmail(string email)
@@ -70,7 +70,7 @@ namespace CustomerInquiry.Api.Controllers
             try
             {
                 var mailAddress = new System.Net.Mail.MailAddress(email);
-                return mailAddress.Address == email;
+                return email.Length<= 25 && mailAddress.Address == email;
             }
             catch
             {
@@ -101,9 +101,9 @@ namespace CustomerInquiry.Api.Controllers
         }
 
 
-        public static int? ToNullableInt(string text)
+        public static long? ToNullableLong(string text)
         {
-            if (int.TryParse(text, out int value))
+            if (long.TryParse(text, out long value))
             {
                 return value;
             }

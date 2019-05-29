@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201905291030374_AlterCustomerColumn1.Designer.cs">
       <DependentUpon>201905291030374_AlterCustomerColumn1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905291558364_AlterCustomerIDToFixSize.cs" />
+    <Compile Include="Migrations\201905291558364_AlterCustomerIDToFixSize.Designer.cs">
+      <DependentUpon>201905291558364_AlterCustomerIDToFixSize.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Transaction.cs" />
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905291030374_AlterCustomerColumn1.resx">
       <DependentUpon>201905291030374_AlterCustomerColumn1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291558364_AlterCustomerIDToFixSize.resx">
+      <DependentUpon>201905291558364_AlterCustomerIDToFixSize.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
