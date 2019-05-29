@@ -260,6 +260,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CustomerIquiry.Bll\CustomerIquiry.Bll.csproj">
+      <Project>{263B8869-3378-4568-90DA-7156210D1B0E}</Project>
+      <Name>CustomerIquiry.Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomerIquiry.DataAccess\CustomerIquiry.DataAccess.csproj">
       <Project>{359F9ACE-4C95-43CB-9276-1FB24AB5C135}</Project>
       <Name>CustomerIquiry.DataAccess</Name>

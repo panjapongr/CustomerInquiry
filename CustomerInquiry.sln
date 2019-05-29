@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInquiry.Api", "Cust
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerIquiry.DataAccess", "CustomerIquiry.DataAccess\CustomerIquiry.DataAccess.csproj", "{359F9ACE-4C95-43CB-9276-1FB24AB5C135}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerIquiry.Bll", "CustomerIquiry.Bll\CustomerIquiry.Bll.csproj", "{263B8869-3378-4568-90DA-7156210D1B0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{359F9ACE-4C95-43CB-9276-1FB24AB5C135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{359F9ACE-4C95-43CB-9276-1FB24AB5C135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{359F9ACE-4C95-43CB-9276-1FB24AB5C135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{263B8869-3378-4568-90DA-7156210D1B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{263B8869-3378-4568-90DA-7156210D1B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{263B8869-3378-4568-90DA-7156210D1B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{263B8869-3378-4568-90DA-7156210D1B0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

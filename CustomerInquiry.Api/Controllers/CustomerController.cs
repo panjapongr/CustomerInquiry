@@ -1,7 +1,9 @@
-﻿using CustomerIquiry.DataAccess;
+﻿using CustomerIquiry.Bll;
+using CustomerIquiry.DataAccess;
 using CustomerIquiry.DataAccess.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,11 +13,23 @@ namespace CustomerInquiry.Api.Controllers
 {
     public class CustomerController : ApiController
     {
-        public Customer Get(int customerID, string email)
+        private readonly CustomerManager customerManager = new CustomerManager(new CustomerContext(ConfigurationManager.ConnectionStrings["CustomerInquiryDBConnection"].ConnectionString));
+
+        public Customer Get(int? customerID = null, string email = null)
         {
-            return new CustomerContext().Customer
-                            .Where(c => customerID == c.CustomerID && email == c.Email)
-                            .SingleOrDefault();
+            if (customerID != null && email != null)
+            {
+                return customerManager.GetCustomerWithTransaction(customerID, email);
+            }
+            else if (customerID != null)
+            {
+                return customerManager.GetCustomerWithTransactionByID(customerID);
+            }
+            else if(email != null)
+            {
+                return customerManager.GetCustomerWithTransactionByEmail(email);
+            }
+            return null;
         }
     }
 }
