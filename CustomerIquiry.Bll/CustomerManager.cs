@@ -22,11 +22,16 @@ namespace CustomerIquiry.Bll
         /// <returns>Return Customer and related transaction</returns>
         public Customer GetCustomerWithTransaction(int? customerID = null, string email = null)
         {
-            return context.Customer
+            var customer = context.Customer
                             .Include(c => c.Transactions)
                             .Where(c => (customerID == null || customerID == c.CustomerID)
                                         && (email == null || email == c.Email))
                             .SingleOrDefault();
+            if (customer.Transactions.Count > 5)
+            {
+                customer.Transactions = customer.Transactions.OrderByDescending(t => t.Date).Take(5).ToList();
+            }
+            return customer;
         }
     }
 }
