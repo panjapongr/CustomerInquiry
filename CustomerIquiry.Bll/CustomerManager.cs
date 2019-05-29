@@ -23,13 +23,17 @@ namespace CustomerIquiry.Bll
         public Customer GetCustomerWithTransaction(long? customerID = null, string email = null)
         {
             var customer = context.Customer
-                            .Include(c => c.Transactions)
                             .Where(c => (customerID == null || customerID == c.CustomerID)
                                         && (email == null || email == c.Email))
                             .SingleOrDefault();
-            if (customer != null && customer.Transactions.Count > 5)
+            if (customer != null)
             {
-                customer.Transactions = customer.Transactions.OrderByDescending(t => t.Date).Take(5).ToList();
+                context.Entry(customer)
+                        .Collection(c => c.Transactions)
+                        .Query()
+                        .OrderByDescending(t => t.Date)
+                        .Take(5)
+                        .Load();
             }
             return customer;
         }
