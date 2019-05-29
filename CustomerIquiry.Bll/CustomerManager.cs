@@ -15,7 +15,7 @@ namespace CustomerIquiry.Bll
         }
 
         /// <summary>
-        ///     Search DB for customer data and related transaction data
+        ///     Search DB for customer data and related transaction data by Customer ID, Email or Both
         /// </summary>
         /// <param name="customerID">Customer ID</param>
         /// <param name="email">Customer Email</param>

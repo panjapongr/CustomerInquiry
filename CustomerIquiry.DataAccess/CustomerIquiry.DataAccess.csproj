@@ -53,6 +53,10 @@
     <Compile Include="Migrations\201905290838550_Initial.Designer.cs">
       <DependentUpon>201905290838550_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905291021354_AlterDecimalColumn.cs" />
+    <Compile Include="Migrations\201905291021354_AlterDecimalColumn.Designer.cs">
+      <DependentUpon>201905291021354_AlterDecimalColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Transaction.cs" />
@@ -64,6 +68,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905290838550_Initial.resx">
       <DependentUpon>201905290838550_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291021354_AlterDecimalColumn.resx">
+      <DependentUpon>201905291021354_AlterDecimalColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
