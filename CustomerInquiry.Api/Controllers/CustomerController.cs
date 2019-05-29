@@ -21,11 +21,20 @@ namespace CustomerInquiry.Api.Controllers
             try
             {
                 int? validCustomerID = ToNullableInt(customerID);
-                return customerManager.GetCustomerWithTransaction(validCustomerID, email);
+                var customer = customerManager.GetCustomerWithTransaction(validCustomerID, email);
+                if (customer == null)
+                {
+                    throw HttpNotFound();
+                }
+                return customer;
+            }
+            catch (HttpResponseException)
+            {
+                throw;
             }
             catch
             {
-                throw NewBadRequest();
+                throw HttpBadRequest();
             }
         }
 
@@ -33,15 +42,15 @@ namespace CustomerInquiry.Api.Controllers
         {
             if (customerID == null && email == null)
             {
-                throw NewBadRequest("No inquiry criteria");
+                throw HttpBadRequest("No inquiry criteria");
             }
             if (!IsValidCustomerID(customerID))
             {
-                throw NewBadRequest("Invalid Customer ID");
+                throw HttpBadRequest("Invalid Customer ID");
             }
             if (!IsValidEmail(email))
             {
-                throw NewBadRequest("Invalid Email");
+                throw HttpBadRequest("Invalid Email");
             }
         }
 
@@ -68,7 +77,7 @@ namespace CustomerInquiry.Api.Controllers
             }
         }
 
-        private HttpResponseException NewBadRequest(string message = null)
+        private HttpResponseException HttpBadRequest(string message = null)
         {
             if (string.IsNullOrEmpty(message))
             {
@@ -78,6 +87,18 @@ namespace CustomerInquiry.Api.Controllers
             HttpResponseMessage response = Request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
             return new HttpResponseException(response);
         }
+
+        private HttpResponseException HttpNotFound(string message = null)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                return new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            HttpResponseMessage response = Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+            return new HttpResponseException(response);
+        }
+
 
         public static int? ToNullableInt(string text)
         {
