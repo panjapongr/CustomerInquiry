@@ -15,21 +15,77 @@ namespace CustomerInquiry.Api.Controllers
     {
         private readonly CustomerManager customerManager = new CustomerManager(new CustomerContext(ConfigurationManager.ConnectionStrings["CustomerInquiryDBConnection"].ConnectionString));
 
-        public Customer Get(int? customerID = null, string email = null)
+        public Customer Get(string customerID = null, string email = null)
         {
             ValidateGetCustomerRequest(customerID, email);
             try
             {
-                return customerManager.GetCustomerWithTransaction(customerID, email);
+                int? validCustomerID = ToNullableInt(customerID);
+                return customerManager.GetCustomerWithTransaction(validCustomerID, email);
             }
             catch
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                throw NewBadRequest();
             }
         }
 
-        private void ValidateGetCustomerRequest(int? customerID, string email)
+        private void ValidateGetCustomerRequest(string customerID, string email)
         {
+            if (customerID == null && email == null)
+            {
+                throw NewBadRequest("No inquiry criteria");
+            }
+            if (!IsValidCustomerID(customerID))
+            {
+                throw NewBadRequest("Invalid Customer ID");
+            }
+            if (!IsValidEmail(email))
+            {
+                throw NewBadRequest("Invalid Email");
+            }
+        }
+
+        private static bool IsValidCustomerID(string customerID)
+        {
+            // Valid if null or can convert to int
+            return customerID == null || int.TryParse(customerID, out int id);
+        }
+
+        private static bool IsValidEmail(string email)
+        {
+            if (email == null)
+            {
+                return true;
+            }
+            try
+            {
+                var mailAddress = new System.Net.Mail.MailAddress(email);
+                return mailAddress.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private HttpResponseException NewBadRequest(string message = null)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                return new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            HttpResponseMessage response = Request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
+            return new HttpResponseException(response);
+        }
+
+        public static int? ToNullableInt(string text)
+        {
+            if (int.TryParse(text, out int value))
+            {
+                return value;
+            }
+            return null;
         }
     }
 }
